@@ -1,0 +1,244 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cena {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  background: linear-gradient(
+    180deg,
+    hsla(215, 83%, 68%, 1) 0%,
+    hsla(208, 90%, 88%, 1) 100%
+  );
+}
+
+.sol {
+  height: 100px;
+  width: 100px;
+  background-color: rgb(255, 255, 130);
+  border-radius: 100%;
+  margin-left: 10%;
+  margin-bottom: 60px;
+  box-shadow: 0 0 40px 15px rgba(255, 255, 100, 0.5);
+  animation: brilho 3s ease-in-out infinite;
+}
+
+@keyframes brilho {
+  0% {
+    box-shadow: 0 0 30px 10px rgba(255, 255, 100, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 50px 20px rgba(255, 255, 120, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 30px 10px rgba(255, 255, 100, 0.6);
+  }
+}
+
+/* nave alienígena que só aparece com clique no sol */
+.nave {
+  position: absolute;
+  width: 120px;
+  height: 60px;
+  background: radial-gradient(ellipse at center, #b0bec5 0%, #455a64 70%);
+  border-radius: 50% 50% 40% 40%;
+  box-shadow: 0 0 20px 5px rgba(0, 255, 170, 0.5);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  z-index: 20;
+}
+
+.nave::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 35px;
+  width: 50px;
+  height: 25px;
+  background: radial-gradient(ellipse at center, #e0f7fa 0%, #80deea 70%);
+  border-radius: 50%;
+  box-shadow: 0 0 15px 5px rgba(0, 255, 255, 0.6);
+}
+
+.nave::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 30px;
+  width: 60px;
+  height: 15px;
+  background: rgba(0, 255, 128, 0.3);
+  border-radius: 50%;
+  filter: blur(4px);
+  animation: luzNave 0.8s ease-in-out infinite alternate;
+}
+
+/* animação da luz pulsante da nave */
+@keyframes luzNave {
+  from {
+    opacity: 0.3;
+    transform: scaleY(1);
+  }
+  to {
+    opacity: 0.8;
+    transform: scaleY(1.4);
+  }
+}
+
+/* animação de voo (entra e sai da tela) */
+@keyframes vooNave {
+  0% {
+    transform: translateX(-150px) translateY(0) scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(60vw) translateY(-60px) scale(1.2);
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(100vw) translateY(40px) scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(110vw) translateY(100px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.montanha {
+  margin-bottom: -10px;
+}
+
+.estrada {
+  height: 20px;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.listras {
+  height: 3px;
+  width: 50px;
+  background-color: white;
+}
+
+.grama {
+  height: 100px;
+  width: 100%;
+  background-color: #5b8913;
+}
+
+.carro {
+  position: absolute;
+  bottom: 120px;
+  left: 100px;
+  width: 100px;
+  height: 50px;
+  transition: left 0.1s linear;
+  cursor: pointer;
+}
+
+.corpo {
+  width: 100%;
+  height: 30px;
+  background-color: red;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.roda {
+  width: 25px;
+  height: 25px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -10px;
+  animation: girar 0.8s linear infinite;
+}
+
+.roda-esq {
+  left: 10px;
+}
+
+.roda-dir {
+  right: 10px;
+}
+
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.salto {
+  animation: pular 0.6s ease-out;
+}
+
+@keyframes pular {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-80px);
+  }
+  60% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Arco-íris para o carro */
+.arcobaleno {
+  animation: arcoiris 2s linear infinite;
+}
+
+@keyframes arcoiris {
+  0% {
+    background-color: red;
+  }
+  16% {
+    background-color: orange;
+  }
+  33% {
+    background-color: yellow;
+  }
+  50% {
+    background-color: green;
+  }
+  66% {
+    background-color: blue;
+  }
+  83% {
+    background-color: indigo;
+  }
+  100% {
+    background-color: violet;
+  }
+}

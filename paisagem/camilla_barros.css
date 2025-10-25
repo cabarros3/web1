@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cena {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  background: linear-gradient(
+    180deg,
+    hsla(215, 83%, 68%, 1) 0%,
+    hsla(208, 90%, 88%, 1) 100%
+  );
+}
+
+.sol {
+  height: 100px;
+  width: 100px;
+  background-color: rgb(255, 255, 130);
+  border-radius: 100%;
+  margin-left: 10%;
+  margin-bottom: 60px;
+  box-shadow: 0 0 40px 15px rgba(255, 255, 100, 0.5);
+  animation: brilho 3s ease-in-out infinite;
+}
+
+.sol::after {
+  width: 250px;
+  height: 250px;
+  animation-delay: 1.5s;
+}
+
+.montanha {
+  margin-bottom: -10px;
+}
+
+.estrada {
+  height: 20px;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.listras {
+  height: 3px;
+  width: 50px;
+  background-color: white;
+}
+
+.grama {
+  height: 100px;
+  width: 100%;
+  background-color: #5b8913;
+}
+
+@keyframes brilho {
+  0% {
+    box-shadow: 0 0 30px 10px rgba(255, 255, 100, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 50px 20px rgba(255, 255, 120, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 30px 10px rgba(255, 255, 100, 0.6);
+  }
+}
