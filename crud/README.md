@@ -88,7 +88,7 @@ CREATE TABLE participacao (
 
 ## Uso
 
-1. Abra o navegador e acesse http://localhost/seu-projeto/index.php.
+1. Abra o navegador e acesse http://localhost:8000/
 
 2. Clique no link do CRUD que deseja acessar:
 
