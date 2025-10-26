@@ -50,35 +50,37 @@ try {
 
 ```
 CREATE TABLE grupo (
-    grupo_id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL
+  grupo_id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  empresa VARCHAR(100),
+  pais VARCHAR(50),
+  ano_debut YEAR
 );
-
 CREATE TABLE musica (
-    musica_id INT AUTO_INCREMENT PRIMARY KEY,
-    grupo_id INT NOT NULL,
-    titulo VARCHAR(255) NOT NULL,
-    ano_lancamento INT,
-    album VARCHAR(255),
-    FOREIGN KEY (grupo_id) REFERENCES grupo(grupo_id)
+  musica_id INT AUTO_INCREMENT PRIMARY KEY,
+  grupo_id INT NOT NULL,
+  titulo VARCHAR(100) NOT NULL,
+  ano_lancamento YEAR,
+  album VARCHAR(100),
+  FOREIGN KEY (grupo_id) REFERENCES grupo(grupo_id)
 );
-
 CREATE TABLE competicao (
-    competicao_id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
-    data DATE
+  comp_id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  local VARCHAR(100),
+  data DATE,
+  tema VARCHAR(100)
 );
-
 CREATE TABLE participacao (
-    participacao_id INT AUTO_INCREMENT PRIMARY KEY,
-    grupo_id INT NOT NULL,
-    competicao_id INT NOT NULL,
-    musica_id INT NOT NULL,
-    colocacao INT,
-    pontuacao DECIMAL(5,2),
-    FOREIGN KEY (grupo_id) REFERENCES grupo(grupo_id),
-    FOREIGN KEY (competicao_id) REFERENCES competicao(competicao_id),
-    FOREIGN KEY (musica_id) REFERENCES musica(musica_id)
+  participacao_id INT AUTO_INCREMENT PRIMARY KEY,
+  grupo_id INT NOT NULL,
+  comp_id INT NOT NULL,
+  musica_id INT NOT NULL,
+  colocacao INT,
+  pontuacao DECIMAL(5,2),
+  FOREIGN KEY (grupo_id) REFERENCES grupo(grupo_id),
+  FOREIGN KEY (comp_id) REFERENCES competicao(comp_id),
+  FOREIGN KEY (musica_id) REFERENCES musica(musica_id)
 );
 ```
 
