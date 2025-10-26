@@ -45,8 +45,8 @@ $grupos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <td><?= htmlspecialchars($g['pais']) ?></td>
         <td><?= htmlspecialchars($g['membros']) ?></td>
         <td>
-            <a class="action" href="update_grupos.php?id=<?= $g['grupo_id'] ?>">Editar</a> |
-            <a class="action" href="delete_grupos.php?id=<?= $g['grupo_id'] ?>" 
+            <a class="action text-blue-400" href="update_grupos.php?id=<?= $g['grupo_id'] ?>">Editar</a> |
+            <a class="action text-red-400" href="delete_grupos.php?id=<?= $g['grupo_id'] ?>" 
                onclick="return confirm('Tem certeza que deseja excluir este grupo?');">
                Excluir
             </a>
