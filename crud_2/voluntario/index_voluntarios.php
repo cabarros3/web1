@@ -1,6 +1,6 @@
 <?php
 // Inclui o arquivo de conexão com o banco de dados
-require_once 'db.php';
+require_once '../banco/db.php';
 
 // Executa a consulta para obter todos os alunos
 $stmt = $pdo->query("SELECT * FROM voluntario");
@@ -44,6 +44,7 @@ $voluntarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <!-- Exibe os dados do aluno -->
                         <td><?= $voluntario['voluntario_id'] ?></td>
                         <td><?= $voluntario['nome_voluntario'] ?></td>
+                        <td><?= $voluntario['funcao'] ?></td>
                         <td>
                             <!-- Links para visualizar, editar e excluir o voluntario$voluntario -->
                             <a href="read_voluntario.php?id=<?= $voluntario['voluntario_id'] ?>">Visualizar</a>
