@@ -1,5 +1,5 @@
 <?php
-require_once '..banco/db.php';
+require_once '../banco/db.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -16,10 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($user && password_verify($senha, $user['senha'])) {
         // Login com sucesso: define as variáveis de sessão
         // Supomos que existe uma coluna 'id' auto-increment (padrão)
-        $_SESSION['user_id'] = $user['id']; 
+        $_SESSION['usuario_id'] = $user['usuario_id']; 
         $_SESSION['nome'] = $user['nome']; // Salva o nome para exibir no menu
         
-        header('Location: /index.php');
+        header('Location: ../index.php');
         exit;
     } else {
         $erro = "E-mail ou senha incorretos!";
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <!-- <link rel="stylesheet" href="../css/style.css"> -->
 </head>
 <body>
     <header>
@@ -41,13 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <nav>
             <ul>
                 <li><a href="/index.php">Home</a></li>
-                <?php if (isset($_SESSION['user_id'])): ?>
-                    <li><a href="/php/index-aluno.php">Listar Alunos</a></li>
-                    <li><a href="/php/create-aluno.php">Adicionar Aluno</a></li>
-                    <li><a href="/php/logout.php">Logout (<?= htmlspecialchars($_SESSION['nome']) ?>)</a></li>
+                <?php if (isset($_SESSION['usuario_id'])): ?>
+                    <li><a href="/voluntario/index_voluntarios.php">Listar Voluntários</a></li>
+                    <li><a href="/voluntario/create_voluntario.php">Adicionar voluntários</a></li>
+                    <li><a href="/auth/logout.php">Logout (<?= htmlspecialchars($_SESSION['nome']) ?>)</a></li>
                 <?php else: ?>
-                    <li><a href="auth/user-login.php">Login</a></li>
-                    <li><a href="auth/user-register.php">Registrar</a></li>
+                    <li><a href="user-login.php">Login</a></li>
+                    <li><a href="user-register.php">Registrar</a></li>
                 <?php endif; ?>
             </ul>
         </nav>

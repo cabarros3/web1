@@ -1,5 +1,5 @@
 <?php
-require_once './banco/db.php';
+require_once '../banco/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // 1. Captura os dados correspondentes às colunas do seu banco

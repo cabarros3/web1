@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Horta Comunitária</title>
-    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
 </head>
 <body>
     <header>
@@ -12,13 +12,13 @@
         <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <?php if (isset($_SESSION['user_id'])): ?>
+                <?php if (isset($_SESSION['usuario_id'])): ?>
                     <li><a href="voluntario/index_voluntarios.php">Gerenciar Voluntários</a></li>
                     <li><a href="instituicao/index_instituicao.php">Gerenciar uma Instituição</a></li>
-                    <li><a href="auth/logout.php">Logout (<?= $_SESSION['username'] ?>)</a></li>
+                    <li><a href="auth/logout.php">Logout (<?= $_SESSION['name'] ?>)</a></li>
                 <?php else: ?>
-                    <li><a href="user-login.php">Login</a></li>
-                    <li><a href="register.php">Cadastre-se</a></li>
+                    <li><a href="./auth/user-login.php">Login</a></li>
+                    <li><a href="./auth/user-register.php">Cadastre-se</a></li>
                 <?php endif; ?>
             </ul>
         </nav>
