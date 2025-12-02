@@ -119,3 +119,11 @@ CREATE TABLE telefone_instituicao (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
+CREATE TABLE usuario (
+    usuario_id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL, -- Guardará o Hash
+    token VARCHAR(255) NULL      -- Guardará o Token de sessão
+);

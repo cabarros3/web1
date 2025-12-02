@@ -12,8 +12,14 @@
         <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="voluntario/index_voluntarios.php">Gerenciar Voluntários</a></li>
-                <li><a href="instituicao/index_instituicao.php">Gerenciar uma Instituição</a></li>
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <li><a href="voluntario/index_voluntarios.php">Gerenciar Voluntários</a></li>
+                    <li><a href="instituicao/index_instituicao.php">Gerenciar uma Instituição</a></li>
+                    <li><a href="auth/logout.php">Logout (<?= $_SESSION['username'] ?>)</a></li>
+                <?php else: ?>
+                    <li><a href="user-login.php">Login</a></li>
+                    <li><a href="register.php">Cadastre-se</a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>
