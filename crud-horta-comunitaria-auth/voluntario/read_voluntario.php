@@ -1,17 +1,17 @@
 <?php
     // Inclui o arquivo de conexão com o banco de dados
-    require_once 'db.php';
+    require_once '../banco/db.php';
 
     // Obtém o ID do aluno a partir da URL usando o método GET
     $id = $_GET['id'];
 
     // Prepara a instrução SQL para selecionar o aluno pelo ID
-    $stmt = $pdo->prepare("SELECT * FROM voluntario WHERE id = ?");
+    $stmt = $pdo->prepare("SELECT * FROM voluntario WHERE voluntario_id = ?");
     // Executa a instrução SQL, passando o ID do aluno como parâmetro
     $stmt->execute([$id]);
 
     // Recupera os dados do aluno como um array associativo
-    $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
+    $voluntario = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -38,12 +38,13 @@
         <h2>Detalhes do Voluntarios</h2>
         <?php if ($voluntario): ?>
             <!-- Exibe os detalhes do aluno -->
-            <p><strong>ID:</strong> <?= $voluntario['id'] ?></p>
+            <p><strong>ID:</strong> <?= $voluntario['voluntario_id'] ?></p>
             <p><strong>Nome:</strong> <?= $voluntario['nome_voluntario'] ?></p>
+            <p><strong>Função:</strong> <?= $voluntario['funcao'] ?></p>
             <p>
                 <!-- Links para editar e excluir o aluno -->
-                <a href="update_voluntario.php?id=<?= $voluntario['id'] ?>">Editar</a>
-                <a href="delete_voluntario.php?id=<?= $voluntario['id'] ?>">Excluir</a>
+                <a href="update_voluntario.php?id=<?= $voluntario['voluntario_id'] ?>">Editar</a>
+                <a href="delete_voluntario.php?id=<?= $voluntario['voluntario_id'] ?>">Excluir</a>
             </p>
         <?php else: ?>
             <!-- Exibe uma mensagem caso o aluno não seja encontrado -->

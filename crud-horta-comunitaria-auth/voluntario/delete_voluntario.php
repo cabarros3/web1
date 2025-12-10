@@ -1,12 +1,12 @@
 <?php
 // Inclui o arquivo de conexão com o banco de dados
-require_once 'db.php';
+require_once '../banco/db.php';
 
 // Obtém o ID do aluno a ser excluído a partir da URL usando o método GET
-$id = $_GET['voluntario_id'];
+$id = $_GET['id'];
 
 // Prepara a instrução SQL para excluir o aluno pelo ID
-$stmt = $pdo->prepare("DELETE FROM voluntario WHERE id = ?");
+$stmt = $pdo->prepare("DELETE FROM voluntario WHERE voluntario_id = ?");
 
 // Executa a instrução SQL com o ID do aluno
 $stmt->execute([$id]);

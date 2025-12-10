@@ -1,18 +1,19 @@
 <?php
 // Inclui o arquivo de conexão com o banco de dados
-require_once 'db.php';
+require_once '../banco/db.php';
 
 // Verifica se o formulário foi submetido através do método POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Obtém os dados enviados pelo formulário
     $nome = $_POST['nome_voluntario'];
+    $funcao = $_POST['funcao'];
    
     
     // Prepara a instrução SQL para inserir um novo aluno no banco de dados
-    $stmt = $pdo->prepare("INSERT INTO voluntario (nome_voluntario) VALUES (?)");
+    $stmt = $pdo->prepare("INSERT INTO voluntario (nome_voluntario, funcao) VALUES (?, ?)");
     
     // Executa a instrução SQL com os dados do formulário
-    $stmt->execute([$nome]);
+    $stmt->execute([$nome, $funcao]);
     
     // Redireciona para a página de listagem de alunos após a inserção
     header('Location: index_voluntarios.php');
@@ -46,6 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label for="nome_voluntario">Nome:</label>
             <!-- Campo para inserir o nome do aluno -->
             <input type="text" id="nome_voluntario" name="nome_voluntario" required>
+            <label for="funcao">Função: </label>
+            <!-- Campo para inserir o nome do aluno -->
+            <input type="text" id="funcao" name="funcao" required>
             
             <!-- Botão para submeter o formulário -->
             <button type="submit">Adicionar</button>

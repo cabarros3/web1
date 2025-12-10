@@ -13,7 +13,7 @@
             <ul>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="voluntario/index_voluntarios.php">Gerenciar Voluntários</a></li>
-                <!-- <li><a href="php/create-aluno.php">Adicionar Aluno</a></li> -->
+                <li><a href="instituicao/index_instituicao.php">Gerenciar uma Instituição</a></li>
             </ul>
         </nav>
     </header>
