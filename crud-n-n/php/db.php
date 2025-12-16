@@ -3,7 +3,7 @@
 $host = 'localhost:3306'; // Endereço do servidor MySQL e a porta utilizada
 $db = 'hospital';     // Nome do banco de dados
 $user = 'root';           // Usuário do banco de dados
-$pass = 'root';           // Senha do usuário do banco de dados
+$pass = 'pandas';           // Senha do usuário do banco de dados
 
 // Tenta estabelecer uma conexão com o banco de dados usando PDO
 try {
