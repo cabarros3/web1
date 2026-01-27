@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+// Verifica se existe uma sessão ativa. Se não, redireciona para o login
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: /php/usuario/login.php");
+    exit;
+}
+
+// Pegamos os dados da sessão para exibir no cabeçalho
+$nome_usuario = $_SESSION['usuario_nome'];
+$foto_usuario = $_SESSION['usuario_foto'] ?? 'default.png'; // Fallback caso não tenha foto
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -16,9 +30,22 @@
                 </svg>
                 <h1 class="text-2xl font-bold text-gray-800">Sistema Hospitalar</h1>
             </div>
-            <nav>
-                <a href="index.php" class="text-gray-600 hover:text-blue-600 font-semibold transition duration-300">Home</a>
-            </nav>
+            
+            <div class="flex items-center space-x-6">
+                <nav class="hidden md:flex space-x-4">
+                    <a href="index.php" class="text-blue-600 font-bold transition duration-300">Home</a>
+                </nav>
+
+                <div class="flex items-center border-l pl-6 space-x-3">
+                    <div class="text-right">
+                        <p class="text-sm font-bold text-gray-800 leading-none"><?php echo $nome_usuario; ?></p>
+                        <a href="/php/usuario/logout.php" class="text-xs text-red-500 hover:underline">Sair</a>
+                    </div>
+                    <img src="/php/storage/<?php echo $foto_usuario; ?>" 
+                         alt="Perfil" 
+                         class="h-10 w-10 rounded-full object-cover border-2 border-blue-500 shadow-sm">
+                </div>
+            </div>
         </div>
     </header>
 
@@ -26,11 +53,10 @@
         
         <div class="text-center mb-10">
             <h2 class="text-3xl font-bold text-gray-800">Bem-vindo ao Painel</h2>
-            <p class="text-gray-600 mt-2">Selecione uma opção abaixo para gerenciar o hospital.</p>
+            <p class="text-gray-600 mt-2">Olá, <?php echo explode(' ', $nome_usuario)[0]; ?>! Selecione uma opção abaixo.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
             <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
                 <div class="bg-blue-600 p-4 text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-white mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
