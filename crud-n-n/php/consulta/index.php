@@ -1,7 +1,6 @@
 <?php
 require_once '../db.php';
 
-
 $sql = "SELECT c.id_medico, c.id_paciente, c.data_hora, c.observacoes,
                m.nome as nome_medico, 
                p.nome as nome_paciente
@@ -23,14 +22,27 @@ $consultas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body class="bg-gray-100 p-8">
     <div class="container mx-auto max-w-6xl">
-        <header class="flex justify-between items-center mb-6">
+        <header class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
             <h1 class="text-3xl font-bold text-gray-800">Agendamento de Consultas</h1>
-            <a href="create-consulta.php" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition duration-300 shadow">
-                + Nova Consulta
-            </a>
+            
+            <div class="flex gap-3">
+                <a href="gerar-pdf.php" target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300 shadow flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Gerar Relatório
+                </a>
+
+                <a href="create-consulta.php" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition duration-300 shadow flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Nova Consulta
+                </a>
+            </div>
         </header>
 
-        <div class="bg-white shadow-md rounded my-6 overflow-x-auto">
+        <div class="bg-white shadow-md rounded my-6 overflow-x-auto border border-gray-200">
             <table class="min-w-full table-auto">
                 <thead>
                     <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
@@ -45,7 +57,6 @@ $consultas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php if (count($consultas) > 0): ?>
                         <?php foreach ($consultas as $c): ?>
                             <?php 
-                                // Criando a query string com os 3 IDs necessários para identificar a linha
                                 $params = "id_medico=" . $c['id_medico'] . 
                                           "&id_paciente=" . $c['id_paciente'] . 
                                           "&data_hora=" . urlencode($c['data_hora']);
@@ -78,10 +89,14 @@ $consultas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
-                        <tr><td colspan="5" class="text-center py-4">Nenhuma consulta agendada.</td></tr>
+                        <tr><td colspan="5" class="text-center py-10 text-gray-400 italic">Nenhuma consulta agendada.</td></tr>
                     <?php endif; ?>
                 </tbody>
             </table>
+        </div>
+        
+        <div class="mt-4 text-left">
+            <a href="../../index.php" class="text-blue-600 hover:underline">← Voltar para o Painel Principal</a>
         </div>
     </div>
 </body>

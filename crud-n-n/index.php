@@ -1,15 +1,15 @@
 <?php
 session_start();
 
-// Verifica se existe uma sessão ativa. Se não, redireciona para o login
+
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: /php/usuario/login.php");
     exit;
 }
 
-// Pegamos os dados da sessão para exibir no cabeçalho
+
 $nome_usuario = $_SESSION['usuario_nome'];
-$foto_usuario = $_SESSION['usuario_foto'] ?? 'default.png'; // Fallback caso não tenha foto
+$foto_usuario = $_SESSION['usuario_foto'] ?? 'default.png'; 
 ?>
 
 <!DOCTYPE html>
